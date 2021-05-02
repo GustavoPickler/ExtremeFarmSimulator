@@ -7,8 +7,6 @@ import java.io.PrintStream;
 
 public class MainJogoTest {
 
-    private MainJogo mainJogo;
-
     @Test
     public void deveGerarNaveEmPosicaoAleatoria() {
 
@@ -16,10 +14,11 @@ public class MainJogoTest {
 
     @Test
     public void deveGerarMensagemDeNovaFaseTest() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream conteudoSystemOutPrint = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(conteudoSystemOutPrint));
         final int numeroFase = 0;
+        final String valorInesperado = "";
         MainJogo.mensagemNovaFase(numeroFase);
-        Assert.assertNotNull(outContent);
+        Assert.assertNotEquals(valorInesperado, conteudoSystemOutPrint.toString());
     }
 }
