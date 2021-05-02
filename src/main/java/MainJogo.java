@@ -41,36 +41,36 @@ public class MainJogo {
                 switch (sc.next()) {
                     case "esq" -> {
                         jogo.moveEsq(fazendeiro);
+                        fazendeiro.move();
                         if (fazendeiroEncontrouANave(fazendeiro, nave)) {
                             mensagemAtirarNave();
                             break;
                         }
                         mensagemNaveMaisProxima(nave);
-                        fazendeiro.move();
                     }
                     case "correresq" -> {
                         jogo.correEsq(fazendeiro);
+                        fazendeiro.correr();
                         if (fazendeiroEncontrouANave(fazendeiro, nave)) {
                             mensagemAtirarNave();
                         }
                         mensagemNaveMaisProxima(nave);
-                        fazendeiro.correr();
                     }
                     case "dir" -> {
                         jogo.moveDir(fazendeiro);
+                        fazendeiro.move();
                         if (fazendeiroEncontrouANave(fazendeiro, nave)) {
                             mensagemAtirarNave();
                         }
                         mensagemNaveMaisProxima(nave);
-                        fazendeiro.move();
                     }
                     case "correrdir" -> {
                         jogo.correDir(fazendeiro);
+                        fazendeiro.correr();
                         if (fazendeiroEncontrouANave(fazendeiro, nave)) {
                             mensagemAtirarNave();
                         }
                         mensagemNaveMaisProxima(nave);
-                        fazendeiro.correr();
                     }
                     case "atirar" -> {
                         jogo.atirar();
@@ -83,6 +83,7 @@ public class MainJogo {
                             break;
 
                         }
+                        naveSeMovimenta(nave);
                         mensagemNaveEscapou();
                         reduzMunicaoMissil(missil, fazendeiro);
                     }
@@ -99,7 +100,10 @@ public class MainJogo {
             fase.proximaFase((i + 2));
             pontuacaoMeta = acrescentaNovaMetaDePontuacao(pontuacaoMeta);
         }
-        return;
+    }
+
+    private static void naveSeMovimenta(Nave nave) {
+        nave.setPosicao(new Coordenada( nave.getPosicao().getX() + Utils.geraCoordenadaXAleatoria(-1, 2)));
     }
 
     private static int getNumeroMisseis(GameEngine.Fase fase) {
