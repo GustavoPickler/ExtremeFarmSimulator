@@ -107,9 +107,11 @@ public class MainJogo {
     private static void naveSeMovimenta(Nave nave) {
         if (nave.getPosicao().getX() == 5) {
             nave.setPosicao(new Coordenada(nave.getPosicao().getX() - 1));
+            return;
         }
         if (nave.getPosicao().getX() == -5) {
             nave.setPosicao(new Coordenada(nave.getPosicao().getX() + 1));
+            return;
         }
         nave.setPosicao(new Coordenada( nave.getPosicao().getX() + Utils.geraCoordenadaXAleatoria(-1, 1)));
     }
