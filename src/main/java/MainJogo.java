@@ -90,6 +90,8 @@ public class MainJogo {
                     default -> mensagemComandoDesconhecido();
                     case "help" -> iniciaInstrucoes();
                 }
+
+                naveSeMovimenta(nave);
             }
 
             if (naoAlcancouAMetaDePontuacao(pontuacaoMeta, pontuacao)) {
@@ -103,7 +105,13 @@ public class MainJogo {
     }
 
     private static void naveSeMovimenta(Nave nave) {
-        nave.setPosicao(new Coordenada( nave.getPosicao().getX() + Utils.geraCoordenadaXAleatoria(-1, 2)));
+        if (nave.getPosicao().getX() == 5) {
+            nave.setPosicao(new Coordenada(nave.getPosicao().getX() - 1));
+        }
+        if (nave.getPosicao().getX() == -5) {
+            nave.setPosicao(new Coordenada(nave.getPosicao().getX() + 1));
+        }
+        nave.setPosicao(new Coordenada( nave.getPosicao().getX() + Utils.geraCoordenadaXAleatoria(-1, 1)));
     }
 
     private static int getNumeroMisseis(GameEngine.Fase fase) {
