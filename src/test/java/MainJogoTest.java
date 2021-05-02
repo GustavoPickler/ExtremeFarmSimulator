@@ -1,4 +1,6 @@
 import junit.framework.TestCase;
+import model.Coordenada;
+import model.Nave;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,7 +11,11 @@ public class MainJogoTest {
 
     @Test
     public void deveGerarNaveEmPosicaoAleatoria() {
-
+        final int coordenadaX = 6;
+        Nave nave = new Nave();
+        nave.setPosicao(new Coordenada(coordenadaX));
+        MainJogo.geraNovaNaveEmPosicaoAleatoria(nave);
+        Assert.assertNotEquals(coordenadaX, nave.getPosicao().getX());
     }
 
     @Test

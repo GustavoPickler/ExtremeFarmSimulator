@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class MainJogo {
     public static void main(String[] args) {
         GameEngine.Fase fase = new GameEngine.Fase();
-        final int NUMERO_MISSEIS = fase.quantidadeVacas * 3;
         final int PONTUACAO_INICIAL = 0;
         final int ENERGIA_INICIAL = 500;
         final int NUMERO_DE_FASES = 3;
 
         int pontuacaoMeta = 1000;
+        int numeroMisseis = getNumeroMisseis(fase);
         iniciaInstrucoes();
         GameEngine gameEngine = new GameEngine();
         Pontuacao pontuacao = new Pontuacao(PONTUACAO_INICIAL, gameEngine);
@@ -19,7 +19,7 @@ public class MainJogo {
             Jogo jogo = new Jogo();
 
             Coordenada coordenadaFazendeiro = new Coordenada(0, 0);
-            Missil missil = new Missil(10, 100, NUMERO_MISSEIS);
+            Missil missil = new Missil(10, 100, numeroMisseis);
             Fazendeiro fazendeiro = new Fazendeiro(ENERGIA_INICIAL, coordenadaFazendeiro, gameEngine, missil);
 
             Coordenada coordenadaNave = new Coordenada(Utils.geraCoordenadaXAleatoria(-5, 5), 100);
@@ -100,6 +100,10 @@ public class MainJogo {
             pontuacaoMeta = acrescentaNovaMetaDePontuacao(pontuacaoMeta);
         }
         return;
+    }
+
+    private static int getNumeroMisseis(GameEngine.Fase fase) {
+        return fase.quantidadeVacas * 3;
     }
 
     public static void geraNovaNaveEmPosicaoAleatoria(Nave nave) {
