@@ -105,15 +105,23 @@ public class MainJogo {
     }
 
     private static void naveSeMovimenta(Nave nave) {
-        if (nave.getPosicao().getX() == 5) {
+        if (encostouNaBordaDireita(nave)) {
             nave.setPosicao(new Coordenada(nave.getPosicao().getX() - 1));
             return;
         }
-        if (nave.getPosicao().getX() == -5) {
+        if (encostouNaBordaEsquerda(nave)) {
             nave.setPosicao(new Coordenada(nave.getPosicao().getX() + 1));
             return;
         }
         nave.setPosicao(new Coordenada( nave.getPosicao().getX() + Utils.geraCoordenadaXAleatoria(-1, 1)));
+    }
+
+    private static boolean encostouNaBordaEsquerda(Nave nave) {
+        return nave.getPosicao().getX() == -5;
+    }
+
+    private static boolean encostouNaBordaDireita(Nave nave) {
+        return nave.getPosicao().getX() == 5;
     }
 
     private static int getNumeroMisseis(GameEngine.Fase fase) {
